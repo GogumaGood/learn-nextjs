@@ -16,12 +16,6 @@ export async function generateMetadata(props: { params: IParams }) {
 export default async function MoviesDetailPage(props: { params: IParams }) {
   const params = await props.params;
   const id = params.id;
-  // console.log("params----------", { id });
-  // console.log("searchParams-------------", await searchParams);
-  // const movie = await getMovie(id);
-  // const videos = await getVideos(id);
-  // const [movie, videos] = await Promise.all([getMovie(id), getVideos(id)]);
-  // return <h1>{movie.title}</h1>;
   return (
     <div>
       <Suspense fallback={<h1>Loading movie info</h1>}>
