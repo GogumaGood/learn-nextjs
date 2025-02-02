@@ -1,8 +1,16 @@
 import { Suspense } from "react";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVidoes from "../../../../components/movie-vidoes";
 
-export default async function MoviesDetail({ params, searchParams }) {
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const movie = await getMovie(id);
+  return {
+    title: movie.title,
+  };
+}
+
+export default async function MoviesDetailPage({ params, searchParams }) {
   const { id } = await params;
   // console.log("params----------", { id });
   // console.log("searchParams-------------", await searchParams);
@@ -12,7 +20,6 @@ export default async function MoviesDetail({ params, searchParams }) {
   // return <h1>{movie.title}</h1>;
   return (
     <div>
-      <h3>Movie detail page</h3>
       <Suspense fallback={<h1>Loading movie info</h1>}>
         <MovieInfo id={id} />
       </Suspense>
